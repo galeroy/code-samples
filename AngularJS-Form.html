@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		table{
+			border-collapse: collapse;
+			margin-top: 30px;
+		}
+		td{
+			border: 1px solid #eee;
+			width: 300px;
+		}
+		fieldset{
+			width: 580px;
+		}
+	</style>
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.2.15/angular.min.js"></script>
+</head>
+<body>
+	<div ng-app="" ng-controller="formController">
+		<form>
+			<fieldset>
+				<legend>Form</legend>
+				<p>
+					<input type="text" ng-model="user.firstName" /> First Name
+				</p>
+				
+				<p>
+					<input type="number" ng-model="user.age" /> Age
+				</p>
+				
+				<p>
+					Gender<br />
+					<input type="radio" value="male" ng-model="user.gender" /> Male
+					<input type="radio" value="female" ng-model="user.gender" /> Female
+				</p>
+				
+				<p>Check all languages spoken
+					<input type="checkbox"  value="English" ng-model="user.English" /> English
+					<input type="checkbox" value="Spanish" ng-model="user.Spanish" /> Spanish
+					<input type="checkbox" value="French" ng-model="user.French" /> French
+				</p>
+				
+				Number of employees<br />
+				<select ng-model="user.employees">
+					<option value="" selected> -- select -- </option>
+					<option value="0 to 50">0 to 50</option>
+					<option value="50 to 100">50 to 100</option>
+					<option value="more than 100">more than 100</option>
+				</select>
+				
+				<p>
+					<button ng-click="clearFields()">RESET FIELDS</button>
+				</p>
+			</fieldset>
+				
+		</form>
+		
+		<table>
+			<tr>
+				<td>First Name</td>
+				<td>{{user.firstName}}</td>
+			</tr>
+			<tr>
+				<td>Age</td>
+				<td>{{user.age}}</td>
+			</tr>
+			<tr>
+				<td>Gender</td>
+				<td>{{user.gender}}</td>
+			</tr>
+			<tr>
+				<td>English</td>
+				<td>{{user.English}}</td>
+			</tr>
+			<tr>
+				<td>Spanish</td>
+				<td>{{user.Spanish}}</td>
+			</tr>
+			<tr>
+				<td>French</td>
+				<td>{{user.French}}</td>
+			</tr>
+			<tr>
+				<td>Number of Employees</td>
+				<td>{{user.employees}}</td>
+			</tr>
+		</table>
+		
+	</div>
+	
+	<script>
+		function formController($scope){
+		
+			$scope.master = {
+				firstName:"",
+				age:0,
+				gender:null,
+				language:null,
+				employees:"",
+				English:false,
+				Spanish:false,
+				French:false
+			};
+
+			$scope.clearFields = function(){
+				$scope.user=angular.copy($scope.master);
+			}
+			
+			$scope.clearFields();
+		}
+	</script>
+</body>
+</html>
